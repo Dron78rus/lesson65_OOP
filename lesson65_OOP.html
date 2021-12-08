@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      p {
+        font-weight: bold;
+      }
+      .topic {
+        text-decoration: underline;
+        margin: 10px;
+      }
+      .task {
+        margin: 20px 10px;
+      }
+      .container {
+        padding-bottom: 15px;
+        border-bottom: 1px black solid;
+      }
+    </style>
+
+    <p>Задание 1</p>
+
+    <div class="topic">Задачи на основы работы с ООП в JavaScript</div>
+    <div class="task">
+      Реализуйте класс Worker (Работник), который будет иметь следующие
+      свойства: name (имя), surname (фамилия), rate (ставка за день работы),
+      days (количество отработанных дней). Также класс должен иметь метод
+      getSalary(), который будет выводить зарплату работника. Зарплата - это
+      произведение (умножение) ставки rate на количество отработанных дней days.
+    </div>
+
+    <div class="container divT1"></div>
+
+    <p>Задание 2</p>
+
+    <div class="task">
+      Модифицируйте класс Worker из предыдущей задачи следующим образом:
+      сделайте все его свойства приватными, а для их чтения сделайте
+      методы-геттеры.
+    </div>
+
+    <div class="container divT2"></div>
+
+    <p>Задание 3</p>
+
+    <div class="task">
+      Модифицируйте класс Worker из предыдущей задачи следующим образом: для
+      свойства rate и для свойства days сделайте еще и методы-сеттеры.
+    </div>
+
+    <div class="container divT3"></div>
+
+    <p>Задание 4</p>
+
+    <div class="task">
+      Реализуйте класс MyString, который будет иметь следующие методы: метод
+      reverse(), который параметром принимает строку, а возвращает ее в
+      перевернутом виде, метод ucFirst(), который параметром принимает строку, а
+      возвращает эту же строку, сделав ее первую букву заглавной и метод
+      ucWords, который принимает строку и делает заглавной первую букву каждого
+      слова этой строки.
+    </div>
+
+    <div class="container divT4"></div>
+
+    <p>Задание 5</p>
+
+    <div class="task">
+      Реализуйте класс Validator, который будет проверять строки. К примеру, у
+      него будет метод isEmail параметром принимает строку и проверяет, является
+      ли она корректным емейлом или нет. Если является - возвращает true, если
+      не является - то false. Кроме того, класс будет иметь следующие методы:
+      метод isDomain для проверки домена, метод isDate для проверки даты и метод
+      isPhone для проверки телефона.
+    </div>
+
+    <input type="text" class="inpT5 userMail" placeholder=" Введите Email" />
+    <input type="text" class="inpT5 userSite" placeholder=" Введите сайт" />
+    <input type="button" value="Внести данные" class="buttonT5" />
+    <div class="container divT5"></div>
+
+    <script>
+      // http://old.code.mu/tasks/javascript/oop/osnovy-raboty-s-oop-v-javascript.html
+
+      // задание 1
+
+      const d = document
+      const divT1 = d.querySelector('.divT1')
+
+      function outputOfResult(parent, receivedValue, initialValue = 'none') {
+        if (initialValue !== 'none') {
+          const sourceString = `Исходная строка: ${initialValue}`
+          const newDiv = d.createElement('div')
+          parent.appendChild(newDiv)
+          newDiv.innerHTML = sourceString
+        }
+
+        const modifiedString = `Результат: ${receivedValue}`
+        const newDiv2 = d.createElement('div')
+        parent.appendChild(newDiv2)
+        newDiv2.innerHTML = modifiedString
+      }
+
+      class Worker {
+        constructor(name, surname, rate, days) {
+          this._name = name
+          this._surname = surname
+          this._rate = rate
+          this._days = days
+        }
+        getSalary() {
+          return this._rate * this._days
+        }
+      }
+      const vasja = new Worker('Vasilij', 'Ivanov', 8000, 21)
+
+      outputOfResult(divT1, vasja.getSalary())
+
+      // задание 2
+
+      const divT2 = d.querySelector('.divT2')
+
+      class WorkerT2 {
+        constructor(name, surname, rate, days) {
+          this._name = name
+          this._surname = surname
+          this._rate = rate
+          this._days = days
+        }
+        getName() {
+          return this._name
+        }
+        getsurname() {
+          return this._surname
+        }
+        getrate() {
+          return this._rate
+        }
+        getdays() {
+          return this._days
+        }
+        getSalary() {
+          return this._rate * this._days
+        }
+      }
+
+      const petja = new WorkerT2('Piotr', 'Ivanov', 8000, 20)
+
+      let outputStr = `Имя: ${petja.getName()}, Фамилия: ${petja.getsurname()}, з/п в сутки: ${petja.getrate()}, Кол-во раб. дней: ${petja.getdays()}`
+      outputOfResult(divT2, outputStr)
+
+      // задание 3
+
+      const divT3 = d.querySelector('.divT3')
+
+      class WorkerT3 {
+        constructor(name, surname, rate, days) {
+          this._name = name
+          this._surname = surname
+          this._rate = rate
+          this._days = days
+        }
+        getName() {
+          return this._name
+        }
+        getsurname() {
+          return this._surname
+        }
+        getrate() {
+          return this._rate
+        }
+        getdays() {
+          return this._days
+        }
+        getSalary() {
+          return this._rate * this._days
+        }
+        setRate(rate) {
+          this._rate = rate
+        }
+        setDays(days) {
+          this._days = days
+        }
+      }
+
+      const tolja = new WorkerT3('Anatolij', 'Ivanov', 7500, 20)
+
+      let sourceStrT3 = `Имя: ${tolja.getName()}, Фамилия: ${tolja.getsurname()}, з/п в сутки: ${tolja.getrate()}, Кол-во раб. дней: ${tolja.getdays()}`
+
+      tolja.setRate(5000)
+      tolja.setDays(35)
+
+      let outputStrT3 = `Имя: ${tolja.getName()}, Фамилия: ${tolja.getsurname()}, з/п в сутки: ${tolja.getrate()}, Кол-во раб. дней: ${tolja.getdays()}`
+
+      outputOfResult(divT3, outputStrT3, sourceStrT3)
+
+      // Задание 4
+
+      const divT4 = d.querySelector('.divT4')
+
+      class MyString {
+        constructor(string) {
+          this._string = string
+        }
+        reverse() {
+          return this._string.split('').reverse().join('')
+        }
+        ucFirst() {
+          let arr = this._string.split('')
+          return arr[0].toUpperCase() + arr.slice(1).join('')
+        }
+        ucWords() {
+          let arr2 = this._string.split(' ')
+          let arr2Mod = ''
+          arr2.forEach((elem) => {
+            let arr3 = elem.split('')
+            arr2Mod += ` ${arr3[0].toUpperCase() + arr3.slice(1).join('')}`
+          })
+          return arr2Mod
+        }
+      }
+
+      const stringT4 = new MyString('фамилия, имя, отчество')
+
+      let sourceStrT4 = stringT4._string
+      let outputStrT4 =
+        stringT4.reverse() +
+        ', ' +
+        stringT4.ucFirst() +
+        '<br>' +
+        stringT4.ucWords()
+      outputOfResult(divT4, outputStrT4, sourceStrT4)
+
+      // Задание 5
+
+      const divT5 = d.querySelector('.divT5')
+      const userMail = d.querySelector('.userMail')
+      const userSite = d.querySelector('.userSite')
+      const buttonT5 = d.querySelector('.buttonT5')
+
+      class Validator {
+        constructor(email, domain, date, phone) {
+          this._email = email
+          this._domain = domain
+          this._date = date
+          this._phone = phone
+        }
+
+        isEmail() {
+          return /^[\w+\W?]*@[A-Za-z]+\.[a-z]{2,3}$/.test(this._email)
+        }
+        isDomain() {
+          return /^[\w+._-]*\.[a-z]{2,3}$/.test(this._domain)
+        }
+        isDate() {}
+      }
+
+      function dataChecking() {
+        let strT5_1 = ''
+        let strT5_2 = ''
+
+        let newData = new Validator(userMail.value, userSite.value)
+        if (!newData.isEmail())
+          strT5_1 = `${userMail.value} не является адресом электронной почты`
+        if (!newData.isDomain())
+          strT5_2 = `, ${userSite.value} не является доменом`
+
+        let sourceStrT5 = `Введены ${userMail.value} и ${userSite.value}`
+        let outputStrT5 = strT5_1 + strT5_2
+
+        if (newData.isEmail() && newData.isDomain())
+          outputStrT5 = 'Всё введено верно'
+
+        outputOfResult(divT5, outputStrT5, sourceStrT5)
+      }
+      buttonT5.addEventListener('click', dataChecking)
+    </script>
+  </body>
+</html>
